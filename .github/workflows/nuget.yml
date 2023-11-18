@@ -28,10 +28,3 @@ jobs:
 
     - name: Pack
       run: dotnet pack --no-build --output ./artifacts
-
-    - name: Publish to NuGet.org
-      uses: nuget/push@v2
-      with:
-        nuget-api-key: ${{ secrets.NUGET_API_KEY }}  # Make sure to add your NuGet.org API key as a secret
-        nuget-restore-directory: ./artifacts
-        nuget-packages: ./artifacts/*.nupkg
