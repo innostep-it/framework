@@ -27,4 +27,10 @@ jobs:
         find ./src -name '*.csproj' -type f -exec dotnet build --no-restore {} \;
 
     - name: Pack
-      run: dotnet pack ./src/YourProjectFolder/YourProject.csproj --no-build --output ./artifacts
+      run: |
+        find ./src -name '*.csproj' -type f -exec dotnet pack --no-build --output ./artifacts {} \;
+
+    - name: Publish to NuGet.org
+      run: |
+        dotnet nuget push ./artifacts/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
+
