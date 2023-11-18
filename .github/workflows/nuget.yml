@@ -1,0 +1,37 @@
+name: NuGet Deploy
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore dependencies
+      run: |
+        find ./src -name '*.csproj' -type f -exec dirname {} \; | sort -u | xargs -I {} dotnet restore {}
+
+    - name: Build
+      run: |
+        find ./src -name '*.csproj' -type f -exec dotnet build --no-restore {} \;
+
+    - name: Pack
+      run: dotnet pack --no-build --output ./artifacts
+
+    - name: Publish to NuGet.org
+      uses: nuget/nuget-push-action@v2
+      with:
+        nuget-api-key: ${{ secrets.NUGET_API_KEY }}  # Make sure to add your NuGet.org API key as a secret
+        nuget-restore-directory: ./artifacts
+        nuget-packages: ./artifacts/*.nupkg
