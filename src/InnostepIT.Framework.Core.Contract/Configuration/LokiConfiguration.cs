@@ -1,4 +1,4 @@
-namespace InnostepIT.Framework.Core.Configuration;
+namespace InnostepIT.Framework.Core.Contract.Configuration;
 
 public class LokiConfiguration
 {
