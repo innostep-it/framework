@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>InnostepIT.Framework.Core.Contract</PackageId>
-        <Version>1.2.0</Version>
+        <Version>1.2.1</Version>
         <Authors>Amadeus Küppers</Authors>
         <Company>Innostep-IT GmbH</Company>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
