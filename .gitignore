@@ -1,0 +1,14 @@
+.idea
+bin
+obj
+.idea
+bin
+obj
+.DS_Store
+*.log
+.env
+packages
+.sonarqube
+.scannerwork
+*.DotSettings.user
+export

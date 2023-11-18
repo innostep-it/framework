@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>InnostepIT.Framework.Core.Contract</RootNamespace>
+        <PackageId>InnostepIT.Framework.Core.Contract</PackageId>
+        <Version>1.2.0</Version>
+        <Authors>Amadeus Küppers</Authors>
+        <Company>Innostep-IT GmbH</Company>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    </ItemGroup>
+
+</Project>
