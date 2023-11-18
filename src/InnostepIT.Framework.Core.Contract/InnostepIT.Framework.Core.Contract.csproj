@@ -4,7 +4,6 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>InnostepIT.Framework.Core.Contract</RootNamespace>
         <PackageId>InnostepIT.Framework.Core.Contract</PackageId>
         <Version>1.2.0</Version>
         <Authors>Amadeus Küppers</Authors>
