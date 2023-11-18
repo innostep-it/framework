@@ -1,7 +1,6 @@
-namespace InnostepIT.Framework.Core.Contract.Data
+namespace InnostepIT.Framework.Core.Contract.Data;
+
+public abstract class Entity
 {
-    public abstract class Entity
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

@@ -1,7 +1,7 @@
-namespace InnostepIT.Framework.Core.Contract
+namespace InnostepIT.Framework.Core.Contract;
+
+public interface IEmailClient
 {
-    public interface IEmailClient
-    {
-        Task SendAsync(string subject, string toSenderEmail, string toSenderName, string plainTextContent = "", string htmlContent = "");
-    }
+    Task SendAsync(string subject, string toSenderEmail, string toSenderName, string plainTextContent = "",
+        string htmlContent = "");
 }

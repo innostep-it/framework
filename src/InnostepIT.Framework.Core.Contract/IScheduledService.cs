@@ -1,7 +1,6 @@
-namespace InnostepIT.Framework.Core.Contract
+namespace InnostepIT.Framework.Core.Contract;
+
+public interface IScheduledService
 {
-    public interface IScheduledService
-    {
-        public Task ExecuteAsync();
-    }
+    public Task ExecuteAsync();
 }

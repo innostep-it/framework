@@ -9,9 +9,9 @@ namespace InnostepIT.Framework.Core.Data;
 
 public abstract class CustomDbContextBase : DbContext, ICustomDbContext
 {
-    private readonly ILogger<CustomDbContextBase> _logger;
     private readonly IDateTimeAdapter _dateTimeAdapter;
     private readonly IIdentityStore _identityStore;
+    private readonly ILogger<CustomDbContextBase> _logger;
 
     protected CustomDbContextBase(ILogger<CustomDbContextBase> logger, IDateTimeAdapter dateTimeAdapter,
         IIdentityStore identityStore)

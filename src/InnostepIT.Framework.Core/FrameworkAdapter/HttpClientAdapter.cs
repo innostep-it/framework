@@ -10,7 +10,7 @@ public class HttpClientAdapter : IHttpClientAdapter
     {
         _httpClient = new HttpClient();
     }
-    
+
     public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
     {
         return await _httpClient.SendAsync(request);

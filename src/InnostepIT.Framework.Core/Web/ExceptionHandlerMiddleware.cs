@@ -5,53 +5,54 @@ using InnostepIT.Framework.Core.Contract.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
-namespace InnostepIT.Framework.Core.Web
+namespace InnostepIT.Framework.Core.Web;
+
+public class ExceptionHandlerMiddleware
 {
-    public class ExceptionHandlerMiddleware
+    private readonly ILogger<ExceptionHandlerMiddleware> _logger;
+    private readonly RequestDelegate _next;
+
+    public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger)
     {
-        private readonly ILogger<ExceptionHandlerMiddleware> _logger;
-        private readonly RequestDelegate _next;
+        _next = next;
+        _logger = logger;
+    }
 
-        public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger)
+    public async Task Invoke(HttpContext context)
+    {
+        try
         {
-            _next = next;
-            _logger = logger;
+            await _next(context);
         }
-
-        public async Task Invoke(HttpContext context)
+        catch (Exception exception)
         {
-            try
+            _logger.LogWarning(exception, "{MiddlewareName} catched exception.",
+                typeof(ExceptionHandlerMiddleware).ToString());
+
+            var response = context.Response;
+            response.ContentType = "application/json";
+            var result = JsonSerializer.Serialize(new
             {
-                await _next(context);
-            }
-            catch (Exception exception)
+                message = exception?.Message
+            });
+
+            switch (exception)
             {
-                _logger.LogWarning(exception, "{MiddlewareName} catched exception.", typeof(ExceptionHandlerMiddleware).ToString());
-
-                var response = context.Response;
-                response.ContentType = "application/json";
-                var result = JsonSerializer.Serialize(new
-                {
-                    message = exception?.Message
-                });
-
-                switch (exception)
-                {
-                    case ValidationException:
-                        response.StatusCode = (int) HttpStatusCode.BadRequest;
-                        break;
-                    case EntityNotFoundException e1:
-                    case KeyNotFoundException e2:
-                        response.StatusCode = (int) HttpStatusCode.NotFound;
-                        break;
-                    default:
-                        response.StatusCode = (int) HttpStatusCode.InternalServerError;
-                        result = "Something on serverside went wrong. Please contact system administrator for further details.";
-                        break;
-                }
-
-                await response.WriteAsync(result);
+                case ValidationException:
+                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    break;
+                case EntityNotFoundException e1:
+                case KeyNotFoundException e2:
+                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    break;
+                default:
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    result =
+                        "Something on serverside went wrong. Please contact system administrator for further details.";
+                    break;
             }
+
+            await response.WriteAsync(result);
         }
     }
 }
