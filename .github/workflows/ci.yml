@@ -22,7 +22,8 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: |
+        find ./src -name '*.csproj' -type f -exec dirname {} \; | sort -u | xargs -I {} dotnet restore {}
 
     - name: Build
       run: |
