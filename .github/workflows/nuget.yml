@@ -24,11 +24,11 @@ jobs:
 
     - name: Build
       run: |
-        find ./src -name '*.csproj' -type f -exec dotnet build --no-restore {} \;
+        find ./src -name '*.csproj' -type f -exec dotnet build --configuration Release --no-restore {} \;
 
     - name: Pack
       run: |
-        find ./src -name '*.csproj' -type f -exec dotnet pack --output ./artifacts {} \;
+        find ./src -name '*.csproj' -type f -exec dotnet pack --no-build --output ./artifacts {} \;
 
     - name: Publish to NuGet.org
       run: |
