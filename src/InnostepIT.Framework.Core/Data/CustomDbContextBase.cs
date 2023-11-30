@@ -47,7 +47,7 @@ public abstract class CustomDbContextBase : DbContext, ICustomDbContext
             lock (this)
             {
                 if (entity is ChangeTrackedEntity trackedEntity)
-                    UpdateChangeTrackingFields(trackedEntity);
+                    UpdateChangeTrackingFields(trackedEntity, true);
 
                 entry = base.Add(entity);
             }
@@ -66,7 +66,7 @@ public abstract class CustomDbContextBase : DbContext, ICustomDbContext
 
             if (entities is IEnumerable<ChangeTrackedEntity> trackedEntities)
                 foreach (var trackedEntity in trackedEntities)
-                    UpdateChangeTrackingFields(trackedEntity);
+                    UpdateChangeTrackingFields(trackedEntity, true);
 
             base.AddRange(entities);
         }
@@ -83,7 +83,7 @@ public abstract class CustomDbContextBase : DbContext, ICustomDbContext
 
                 if (entities is IEnumerable<ChangeTrackedEntity> trackedEntities)
                     foreach (var trackedEntity in trackedEntities)
-                        UpdateChangeTrackingFields(trackedEntity);
+                        UpdateChangeTrackingFields(trackedEntity, true);
 
                 base.AddRangeAsync(entities, cancellationToken);
             }
