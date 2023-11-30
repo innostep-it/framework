@@ -28,7 +28,7 @@ jobs:
 
     - name: Pack
       run: |
-        find ./src -name '*.csproj' -type f -exec dotnet pack --no-build --output ./artifacts {} \;
+        find ./src -name '*.csproj' -type f -exec dotnet pack --output ./artifacts {} \;
 
     - name: Publish to NuGet.org
       run: |
