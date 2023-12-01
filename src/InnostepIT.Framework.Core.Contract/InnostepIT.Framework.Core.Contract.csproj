@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageProjectUrl>https://github.com/innostep-it/framework</PackageProjectUrl>
         <PackageId>InnostepIT.Framework.Core.Contract</PackageId>
-        <Version>1.2.3</Version>
+        <Version>1.3.0</Version>
         <Authors>Amadeus Küppers</Authors>
         <Company>Innostep-IT GmbH</Company>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
